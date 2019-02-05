@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Eth Dapp</title>
+
+
+
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      * {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #f1f1f1;
+  color: #fff;
+  font: 300 1rem/1.5 Lato, sans-serif;
+  margin: 0;
+  min-height: 100%;
+}
+
+.align {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.align__item--start {
+  align-self: flex-start;
+}
+.align__item--end {
+  align-self: flex-end;
+}
+
+.animation {
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+.animation--infinite {
+  animation-iteration-count: infinite;
+}
+.animation--up-down {
+  animation-name: upDown;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(-15px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+.text--center {
+  text-align: center;
+}
+
+.site__header {
+  left: 0;
+  padding: 3rem 0;
+  position: fixed;
+  top: 0;
+  transform: translateZ(0);
+  width: 100%;
+  z-index: 1;
+}
+.site__logo {
+  float: left;
+}
+
+.site__section {
+  min-height: 100vh;
+  position: relative;
+}
+.site__section--start {
+  background: url("https://i.imgur.com/ut91aPj.jpg") 50%/cover no-repeat;
+}
+
+.button {
+  display: inline-block;
+  padding: .5rem 1rem;
+}
+.button--primary {
+  background-color: #ce3d90;
+}
+.button--rounded {
+  border-radius: 999px;
+}
+.button--scroll {
+  bottom: 2rem;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.grid {
+  margin: 0 auto;
+  max-width: 74rem;
+  width: 90%;
+}
+.grid:before, .grid:after {
+  content: ' ';
+  display: table;
+}
+.grid:after {
+  clear: both;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0 0 .5rem;
+  text-transform: uppercase;
+}
+
+svg {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navigation a {
+  display: block;
+}
+.navigation--inline > ul:before, .navigation--inline > ul:after {
+  content: ' ';
+  display: table;
+}
+.navigation--inline > ul:after {
+  clear: both;
+}
+.navigation--inline > ul > li {
+  float: left;
+}
+.navigation--main {
+  float: right;
+  text-transform: uppercase;
+}
+.navigation--main > ul {
+  margin: 0 -2rem;
+}
+.navigation--main > ul > li {
+  margin: 0 2rem;
+}
+.navigation--main a {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Eth Dapp</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400">
+
+</head>
+<body>
+
+  <header class="site__header">
+
+    <div class="grid">
+
+      <div class="site__logo">
+
+        <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="34" viewBox="9 310.9 412 220"><path fill="#fff" d="M29 430.9h-20v-20h20v20zm392-20h-20v20h20v-20zm-30.2-15h-20v50h20v-50zm-331.6 5h-20v40h20v-40zm30.1-10h-20v60h20v-60zm30.2-20h-20v100h20v-100zm30.1 20h-20v60h20v-60zm30.2-40h-20v140h20v-140zm30.1-40h-20v220h20v-220zm30.2 40h-20v140h20v-140zm30.1 30h-20v80h20v-80zm30.2 10h-20v60h20v-60zm30.1 10h-20v40h20v-40zm30.2-20h-20v80h20v-80z"/></svg></a>
+
+      </div>
+
+      <nav class="navigation navigation--inline navigation--main">
+        <ul>
+          <li><a href="price/index.html">Price</a></li>
+          <li><a href="blog/index.html">Transfer</a></li>
+          <li><a href="#">Download</a></li>
+          <li><a href="https://etherscan.io/tokens" class="button button--primary button--rounded">ERC-20 Top tokens</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+  </header>
+
+  <main class="site__main">
+
+    <section class="site__section site__section--start align text--center">
+
+      <div class="grid">
+        <br><br><br><br><br><br><br><br><br>
+        <h1>Ethereum Decentralized Application</h1>
+
+        <a href="#" class="button--scroll animation animation--infinite animation--up-down"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="-275 398.7 44.2 44.2"><path fill="#fff" d="M-275 420.8c0-12.2 9.9-22.1 22.1-22.1s22.1 9.9 22.1 22.1c0 12.2-9.9 22.1-22.1 22.1s-22.1-9.9-22.1-22.1zm42.7 0c0-11.4-9.2-20.6-20.6-20.6-11.4 0-20.6 9.2-20.6 20.6 0 11.4 9.2 20.6 20.6 20.6 11.4 0 20.6-9.3 20.6-20.6zM-260.6 418c0-.2.1-.4.2-.5.3-.3.8-.3 1.1 0l6.8 6.8 6.8-6.8c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-7.3 7.3c-.3.3-.8.3-1.1 0l-7.3-7.3c-.3-.2-.3-.4-.3-.6z"/></svg></a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,720 @@
+$gray250: rgb(250,250,250);
+$gray240: rgb(240,240,240);
+$gray230: rgb(230,230,230);
+$gray220: rgb(220,220,220);
+$gray210: rgb(210,210,210);
+$gray200: rgb(200,200,200);
+$gray180: rgb(180,180,180);
+$gray150: rgb(150,150,150);
+$gray120: rgb(120,120,120);
+$gray90: rgb(90,90,90);
+$gray60: rgb(60,60,60);
+$gray50: rgb(50,50,50);
+$gray40: rgb(40,40,40);
+$gray30: rgb(30,30,30);
+
+$purple: rgb(171,71,188);
+$darkPurple: rgb(74,20,140);
+$blue: rgb(3,169,244);
+$darkBlue: rgb(26,35,126);
+$lightGreen: rgb(205,220,57);
+$green: rgb(76,175,80);
+$darkGreen: rgb(46,125,50);
+$red: rgb(211,47,47);
+$darkRed: rgb(183,28,28);
+$orange: rgb(255,111,0);
+$darkOrange: rgb(216,67,21);
+$yellow: rgb(251,192,45);
+$darkYellow: rgb(249,168,37);
+
+$shadow1: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+$shadow2: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+$shadow3: rgba(0, 0, 0, 0.19) 0px 10px 30px, rgba(0, 0, 0, 0.23) 0px 6px 10px;
+
+@mixin center{
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+$lightBlue: rgb(79,195,247);
+$darkBlue: rgb(13,71,161);
+
+$lightGreen: rgb(102,187,106);
+$darkGreen: rgb(27,94,32);
+$limeGreen: rgb(205,220,57);
+
+$lightYellow: rgb(255,235,59);
+$yellow: rgb(253,216,53);
+$goldYellow: rgb(251,192,45);
+
+$orange: rgb(255,152,0);
+$darkOrange: rgb(230,81,0);
+
+body{
+  overflow: hidden;
+  h1, h2, h3, div{
+    color: $gray60;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+  }
+}
+
+body, html, #root, #app{
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.scroll-bar{
+  &::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $gray240;
+  }
+}
+
+#app{
+  &.updating{
+    #card-wrapper{
+      #card{
+        #card-left{
+          #coin-symbol-vert{
+            opacity: 0;
+            transform: rotate(-90deg) translateY(20px);
+          }
+        }
+        
+        #card-right{
+          #card-right-contents{
+            #coin-header, #coin-price, #coin-info{
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            
+            #card-right-stripes{
+              opacity: 0;
+              transform: translateX(100%) translateY(100%);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  #particles{
+    height: 100%;
+    left: 0px;
+    position: fixed;  
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  #help-tooltip{
+    bottom: 10px;
+    left: 10px;
+    position: fixed;
+    transition: all 0.4s;
+    z-index: 4;
+    
+    &.hide{
+      opacity: 0;
+    }
+    
+    i{
+      font-size: 2em;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      vertical-align: top;
+      width: 50px;
+    }
+    
+    h1{
+      animation: bounce-tooltip 3s ease-in-out infinite;
+      display: inline-block;
+      font-size: 1em;
+      position: relative;
+      .text{
+        background-color: white;
+        border-radius: 2px;
+        box-shadow: $shadow1;
+        display: inline-block;
+        height: 40px;
+        font-size: 1em;
+        font-weight: 100;
+        line-height: 40px;
+        margin: 5px 0px;
+        margin-left: 10px;
+        padding: 0px 15px;
+        position: relative;
+        vertical-align: top;
+        z-index: 2;
+      }
+      
+      &:before, .triangle{
+        background-color: white;
+        box-shadow: $shadow1;
+        display: inline-block;
+        height: 20px;
+        left: 0px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        width: 20px;
+        z-index: 1;
+      }
+      
+      &:before{
+        box-shadow: none;
+        content: '';
+        z-index: 3;
+      }
+    }
+  }
+  
+  #card-loading{
+    @include center;
+    height: 300px;
+    width: 300px;
+    z-index: 3;
+    #card-loading-spinner{
+      @include center;
+      
+      &:before, &:after{
+        @include center;
+        content: '';
+      }
+      
+      &:before{
+        animation: rotate 3s linear infinite;
+        border-bottom: 1px solid transparent;
+        border-left: 1px solid $lightBlue;
+        border-right: 1px solid $lightBlue;
+        border-top: 1px solid transparent;
+        border-radius: 1000px;
+        height: 150px;
+        width: 150px;
+      }
+      
+      &:after{
+        animation: rotate-reverse 3s linear infinite;
+        border-bottom: 1px solid $gray200;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-top: 1px solid $gray200;
+        border-radius: 1000px;
+        height: 120px;
+        width: 120px;
+      }
+      
+      height: 150px;
+      width: 150px;
+    }
+  }
+  
+  #card-wrapper{
+    @include center;
+    height: calc(100% - 40px);
+    pointer-events: none;
+    width: calc(100% - 40px);
+    z-index: 3;
+
+    &.orange{
+      #card{
+        #card-left{
+          background-image: linear-gradient(45deg, $lightYellow, $orange);
+        }
+
+        #card-right{
+          #card-right-contents #coin-header{
+            #coin-symbol h1{
+              color: $orange;
+            }
+
+            #coin-rank{
+              .value{
+                h1{
+                  color: $orange;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #card{
+      @include center;
+      animation: fade-in-up 1s ease-in-out;
+      font-size: 0px;
+      height: 400px;
+      pointer-events: initial;
+      width: 647px;
+
+      .card-half{
+        background-color: white;
+        display: inline-block;
+        height: 100%;
+        position: relative;
+        vertical-align: top;
+        width: 50%;
+      }
+
+      #card-left{
+        box-shadow: $shadow3;
+        z-index: 1;
+
+        &:hover{
+          #coin-selection{
+            opacity: 1;
+            pointer-events: initial;
+            
+            #coin-options-wrapper{
+              #coin-options{
+                .coin-option{
+                  .coin-option-icon{
+                    transform: scale(0.7);
+                  }
+                }
+              } 
+            }
+          }
+
+          #coin-icon{
+            opacity: 0;
+          }
+        }
+
+        #coin-icon{
+          background-color: white;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 1000px;
+          box-shadow: $shadow3;
+          height: 260px;
+          left: 0px;
+          position: absolute;
+          top: 50%;
+          transform: translateX(-40px) translateY(-50%);
+          transition: all 0.2s;
+          width: 260px;
+          z-index: 2;
+        }
+
+        #coin-symbol-vert{
+          bottom: 100px;
+          height: 120px;
+          margin: 10px;
+          position: absolute;
+          right: -100px;
+          transform: rotate(-90deg);
+          transition: all 0.2s;
+          width: 320px;
+
+          h1{
+            color: rgba(white, 0.2);
+            font-size: 150px;
+            font-weight: 700;
+            height: 120px;
+            line-height: 120px;
+            margin: 0px;
+          }
+        }
+
+        #coin-selection{
+          height: 100vh;
+          left: 0px;
+          margin-left: -60px;
+          opacity: 0;
+          pointer-events: none;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: all 0.2s;
+          width: calc(100% + 60px);
+          z-index: 3;
+
+          &:before, &:after{
+            height: 15vh;
+            content: '';
+            left: 0px;
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+          }
+
+          &:before{
+            background: linear-gradient(to bottom, white, transparent);
+            top: 0px;
+          }
+
+          &:after{
+            background: linear-gradient(to top, white, transparent);
+            bottom: 0px;
+          }
+
+          #coin-options-wrapper{
+            height: 100%;
+            overflow: auto;
+            width: 100%;
+            #coin-options{
+              margin: calc(50vh - 130px) 0px;
+              padding-left: 20px;
+              position: relative;
+              z-index: 1;
+              .coin-option{
+                margin-bottom: 20px;
+                position: relative;
+                
+                &.selected{
+                  .coin-option-icon{
+                    opacity: 1;
+                    transform: scale(1);
+                  }
+                }
+                
+                .coin-option-icon{
+                  background-color: white;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  border-radius: 1000px;
+                  box-shadow: $shadow3;
+                  height: 260px;
+                  opacity: 0.8;
+                  transform: scale(0.2);
+                  transition: all 0.2s;
+                  width: 260px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      #card-right{
+        z-index: 2;
+        #card-right-contents{
+          background-color: white;
+          box-shadow: $shadow3;
+          height: 460px;
+          margin-top: -30px;
+          overflow: hidden;
+          position: relative;
+
+          #coin-header{
+            border-bottom: 1px solid $gray240;
+            margin: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            position: relative;
+            transition: all 0.2s;
+
+            #coin-name{
+              h1{
+                font-size: 30px;
+                font-weight: 100;
+                text-transform: uppercase;
+              }
+            }
+
+            #coin-symbol{
+              h1{
+                color: $gray200;
+                font-size: 15px;
+                font-weight: 300;
+              }
+            }
+
+            #coin-rank{
+              backface-visibility: hidden;
+              display: inline-block;
+              position: absolute;
+              right: 0px;
+              top: 0px;
+              .label, .value{
+                display: inline-block;
+                h1{
+                  font-size: 20px;
+                }
+              }
+
+              .label{
+                h1{
+                  color: $gray200;
+                  font-weight: 400;
+                  text-transform: uppercase;
+                }
+              }
+              .value{
+                margin-left: 6px;
+                h1{
+                  font-weight: 100;
+                  font-size: 2
+                }
+              }
+            }
+          }
+
+          #coin-price{
+            backface-visibility: hidden;
+            margin: 20px;
+            margin-top: 0px;
+            transition: all 0.2s;
+            .value{
+              display: inline-block;
+              vertical-align: top;
+              h1{
+                font-size: 40px;
+                font-weight: 100;
+              }
+            }
+            
+            #coin-change-24hr{
+              display: inline-block;
+              margin: 5px;
+              vertical-align: top;
+              
+              &.positive{
+                h1{
+                  color: $lightGreen;
+                }
+              }
+              
+              &.negative{
+                h1{
+                  color: $red;
+                }
+              }
+              
+              h1{
+                color: $gray60;
+                font-size: 20px;
+                font-weight: 100;
+              }
+            }
+          }
+
+          #coin-info{
+            margin: 20px;
+            transition: all 0.2s;
+            .coin-info-field{
+              margin-top: 20px;
+              .value{
+                h1{
+                  font-size: 20px;
+                  font-weight: 300;
+                }
+              }
+
+              .label{
+                margin-top: 4px;
+                h1{
+                  color: $gray200;
+                  font-size: 12px;
+                  font-weight: 400;
+                  text-transform: uppercase;
+                }
+              }
+            }
+          }
+          
+          #card-right-stripes{
+            bottom: 0px;
+            height: 50px;
+            right: 0px;
+            position: absolute;
+            transition: all 0.2s;
+            width: 50px;
+            
+            &:before, &:after{
+              background-color: red;
+              content: '';
+              height: 200px;
+              position: absolute;
+            }
+            
+            &:after{
+              box-shadow: $shadow2;
+              left: 0px;
+              top: -70px;
+              transform: rotate(45deg);
+              width: 80px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Color specific
+
+  #card-wrapper{
+    &.orange{
+      #card{
+        #card-left{
+          background-image: linear-gradient(45deg, $lightYellow, $orange);
+        }
+
+        #card-right{
+          #card-right-contents {
+            #coin-header{
+              #coin-symbol h1{
+                color: $orange;
+              }
+
+              #coin-rank .value h1{
+                color: $orange;
+              }
+            }
+            
+            #card-right-stripes{
+              &:before, &:after{
+                background-color: $orange;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.blue{
+      #card{
+        #card-left{
+          background-image: linear-gradient(45deg, $lightBlue, $darkBlue);
+        }
+
+        #card-right{
+          #card-right-contents{
+            #coin-header{
+              #coin-symbol h1{
+                color: $lightBlue;
+              }
+
+              #coin-rank .value h1{
+                color: $lightBlue;
+              }
+            }
+            
+            #card-right-stripes{
+              &:before, &:after{
+                background-color: $lightBlue;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.green{
+      #card{
+        #card-left{
+          background-image: linear-gradient(45deg, $lightGreen, $limeGreen);
+        }
+
+        #card-right{
+          #card-right-contents{
+            #coin-header{
+              #coin-symbol h1{
+                color: $lightGreen;
+              }
+
+              #coin-rank .value h1{
+                color: $lightGreen;
+              }
+            }
+            
+            #card-right-stripes{
+              &:before, &:after{
+                background-color: $lightGreen;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.gray{
+      #card{
+        #card-left{
+          background-image: linear-gradient(45deg, $gray60, $gray150);
+        }
+
+        #card-right{
+          #card-right-contents{
+            #coin-header{
+              #coin-symbol h1{
+                color: $gray150;
+              }
+
+              #coin-rank .value h1{
+                color: $gray60;
+              }
+            }
+            
+            #card-right-stripes{
+              &:before, &:after{
+                background-color: $gray60;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  0%{
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  100%{
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+}
+
+@keyframes rotate-reverse {
+  0%{
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  100%{
+    transform: translateX(-50%) translateY(-50%) rotate(-360deg);
+  }
+}
+
+@keyframes bounce-tooltip{
+  0%, 55%, 65%, 75%, 100%{
+    margin-left: 5px;
+  }
+  
+  60%, 70%{
+    margin-left: 10px;
+  }
+}
+
+@keyframes fade-in-up {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, -40%, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
