@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+  <title>Contract Form</title>
+
+
+
+      <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+<a href="../index.html" class="previous round">&#8249;</a>
+  		<header >Send Money Through Contract*</header>
+
+<form id="form" class="topBefore">
+
+		  <input id="fromAddress" type="text" placeholder="Sender ETH Address" aria-describedby="fromAddressHelp" required="true">
+		  <input id="toAddress" type="text" placeholder="Receiver ETH Address" aria-describedby="toAddressHelp" required="true"><br>
+      <input id="amount" type="text" placeholder="Amount" aria-describedby="amountHelp" required="true">
+      <br>
+
+
+  <input id="submit" type="submit" value="Initiate ETH Transfer">
+<br><br><br><br>
+<h4>*You will need to approve this with your private key</h4>
+
+</form>
+
+
+
+    <script  src="js/index.js"></script>
+    <script src="contractAbi.js"></script>
+    <script src="web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+    <script>
+    var contractAddress = '0x345ca3e014aaf5dca488057592ee47305d9b3e10';
+    if ( typeof web3 != 'undefined') {
+      web3 = new Web3(web3.currentProvider);
+    } else {
+      web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));
+    }
+
+    var version = web3.version;
+    console.log("using web3 version: " + version);
+
+    $('#form').submit(function() {
+      event.preventDefault();
+      var fromAddress = $('#fromAddress').val();
+      var toAddress = $('#toAddress').val();
+      var amount = $('#amount').val();
+      if (web3.utils.isAddress(fromAddress) != true) {
+        alert('You did not enter a correct ethereum address for the sender address.');
+        return;
+      }
+      if (web3.utils.isAddress(toAddress) != true) {
+        alert('You did not enter a correct ethereum address for the recipient address.');
+        return;
+      }
+      if (amount == 0) {
+        alert('You must send more than 0 ETH.');
+        return;
+      }
+    });
+
+    
+
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

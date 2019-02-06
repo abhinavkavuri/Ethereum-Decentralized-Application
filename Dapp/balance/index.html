@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+  <title>Balance Enquiry</title>
+
+
+
+      <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+
+
+  <div id="hitarea">
+<br>
+    <h1 style="font-family:courier;color:white;font-size:300%;display:inline;">Look out for Prying Eyes !</h1>
+
+
+    <div id="a-1" class="hitbox"></div>
+    <div id="a-2" class="hitbox"></div>
+    <div id="a-3" class="hitbox"></div>
+    <div id="a-4" class="hitbox"></div>
+    <div id="a-5" class="hitbox"></div>
+    <div id="b-1" class="hitbox"></div>
+    <div id="b-2" class="hitbox"></div>
+    <div id="b-3" class="hitbox"></div>
+    <div id="b-4" class="hitbox"></div>
+    <div id="b-5" class="hitbox"></div>
+    <div id="c-1" class="hitbox"></div>
+    <div id="c-2" class="hitbox"></div>
+    <div id="c-3" class="hitbox"></div>
+    <div id="c-4" class="hitbox"></div>
+    <div id="c-5" class="hitbox"></div>
+    <div id="d-1" class="hitbox"></div>
+    <div id="d-2" class="hitbox"></div>
+    <div id="d-3" class="hitbox"></div>
+    <div id="d-4" class="hitbox"></div>
+    <div id="d-5" class="hitbox"></div>
+    <div id="e-1" class="hitbox"></div>
+    <div id="e-2" class="hitbox"></div>
+    <div id="e-3" class="hitbox"></div>
+    <div id="e-4" class="hitbox"></div>
+    <div id="e-5" class="hitbox"></div>
+    <div class="eye">
+      <div class="pupil"></div>
+    </div>
+    <div class="eye">
+      <div class="pupil"></div>
+    </div>
+    <div class="eyelid"></div>
+    <div class="eyelid"></div>
+</div>
+
+
+
+<form id="get-balance-form">
+<div class="wrapper">
+  <a href="#" class="button">Get Balance!</a>
+</div>
+</form>
+
+
+<script src="contractAbi.js"></script>
+<script src="web3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<script>
+var contractAddress = '0x928a6054DB97621b7e63a50fAe07e9FA43A728fb';
+if ( typeof web3 != 'undefined') {
+  web3 = new Web3(web3.currentProvider);
+} else {
+  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));
+}
+
+var version = web3.version;
+console.log("using web3 version: " + version);
+
+$('#get-balance-form').click(function() {
+  event.preventDefault();
+
+  web3.eth.getBalance(contractAddress,
+    function(error, result) {
+      if (error) {
+        console.log('error: ' + error);
+
+      } else {
+        console.log('balance:' + result);
+        alert('Balance :' + web3.utils.fromWei(result));
+
+        $('#the-balance').html('<b>Current Balance:</b> ' + web3.utils.fromWei(result));
+      }
+    });
+});
+
+</script>
+
+
+
+
+
+
+</body>
+
+</html>
