@@ -1,4 +1,4 @@
-# Ethereum Decentralized Application
+# Ethereum-Decentralized-Application
 DAPP - Decentralized Application for Monetary Transfer
 
 Works on major ethereum clients and tokens
