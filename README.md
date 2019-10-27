@@ -10,11 +10,11 @@ Works on major ethereum clients and tokens
 ---
 
 <div align="center">
-    <img src="https://i.postimg.cc/W3BXQMMF/price.png" width="600px"</img> 
+    <img src="https://i.postimg.cc/W3BXQMMF/price.png" width="600px"></img> 
 </div>
 <br>
 <div align="center">
-    <img src="https://i.postimg.cc/wB32MW2R/Home.png" width="600px"</img> 
+    <img src="https://i.postimg.cc/wB32MW2R/Home.png" width="600px"></img> 
 </div>
 
 ### Pre-requisites:
