@@ -10,7 +10,7 @@ Works on major ethereum clients and tokens
 ---
 
 <div align="center">
-    <img src="https://i.postimg.cc/W3BXQMMF/price.png" width="600px"></img> 
+    <img src="https://i.postimg.cc/cHtF4VwC/Screenshot-2.png" width="600px"></img> 
 </div>
 <br>
 <div align="center">
