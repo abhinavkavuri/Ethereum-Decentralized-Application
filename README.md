@@ -10,11 +10,19 @@ Works on major ethereum clients and tokens
 ---
 
 <div align="center">
-    <img src="https://i.postimg.cc/cHtF4VwC/Screenshot-2.png" width="600px"></img> 
+    <img src="https://i.postimg.cc/cHtF4VwC/Screenshot-2.png" width="500px"></img> 
 </div>
 <br>
 <div align="center">
-    <img src="https://i.postimg.cc/wB32MW2R/Home.png" width="600px"></img> 
+    <img src="https://i.postimg.cc/HkJcKdgr/Screenshot-3.png" width="500px"></img> 
+</div>
+<br>
+<div align="center">
+    <img src="https://i.postimg.cc/SKCXSdjq/Screenshot-4.png" width="500px"></img> 
+</div>
+<br>
+<div align="center">
+    <img src="https://i.postimg.cc/JnQGJhb2/Screenshot-5.png" width="500px"></img> 
 </div>
 
 ### Pre-requisites:
